@@ -1,19 +1,6 @@
 import type { Metadata } from 'next';
-import { Inter, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/components/layout/ThemeProvider';
-
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  variable: '--font-jetbrains',
-  display: 'swap',
-});
 
 export const metadata: Metadata = {
   title: 'Kumari Rupam | Data Analytics Professional',
@@ -65,7 +52,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" />
         <meta name="theme-color" content="#0a0a0f" />
       </head>
-      <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
+      <body className="font-sans antialiased">
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

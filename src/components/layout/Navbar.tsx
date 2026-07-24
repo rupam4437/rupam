@@ -1,194 +1,154 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Menu, Moon, Sun, X } from 'lucide-react';
 import { useTheme } from 'next-themes';
-import { Menu, X, Moon, Sun } from 'lucide-react';
-import { cn } from '@/lib/utils';
 import { siteData } from '@/lib/constants';
+import { cn } from '@/lib/utils';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState('');
+  const [activeSection, setActiveSection] = useState('#home');
   const { resolvedTheme, setTheme } = useTheme();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => setScrolled(window.scrollY > 24);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   useEffect(() => {
-    const observers = new Map();
-    
+    const observers = new Map<string, IntersectionObserver>();
+
     siteData.navItems.forEach((item) => {
-      const id = item.href.substring(1);
-      const element = document.getElementById(id);
-      
-      if (element) {
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                setActiveSection(item.href);
-              }
-            });
-          },
-          { rootMargin: '-50% 0px -50% 0px' }
-        );
-        
-        observer.observe(element);
-        observers.set(id, observer);
-      }
+      const element = document.getElementById(item.href.slice(1));
+      if (!element) return;
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) setActiveSection(item.href);
+        },
+        { rootMargin: '-42% 0px -52% 0px' }
+      );
+
+      observer.observe(element);
+      observers.set(item.href, observer);
     });
-    
-    return () => {
-      observers.forEach((observer) => observer.disconnect());
-    };
+
+    return () => observers.forEach((observer) => observer.disconnect());
   }, []);
 
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     setIsOpen(false);
-    
-    if (href.startsWith('#')) {
-      const targetId = href.substring(1);
-      const elem = document.getElementById(targetId);
-      if (elem) {
-        elem.scrollIntoView({ behavior: 'smooth' });
-      }
-    } else {
-      window.location.assign(href);
-    }
+
+    document.getElementById(href.slice(1))?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const toggleTheme = () => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark');
+  const isLight = resolvedTheme === 'light';
+
   return (
-    <header
-      className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-        scrolled
-          ? 'bg-[#0a0a0f]/80 backdrop-blur-md py-4 shadow-lg border-b border-white/10'
-          : 'bg-transparent py-6'
-      )}
-    >
-      <div className="container mx-auto px-6 flex items-center justify-between">
-        <Link href="/" className="relative group overflow-hidden">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="text-2xl font-bold tracking-tighter"
-          >
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-violet-500 to-cyan-500">
-              KR
-            </span>
-          </motion.div>
+    <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4 md:px-6">
+      <div
+        className={cn(
+          'mx-auto flex h-16 max-w-[1180px] items-center justify-between rounded-2xl border px-4 transition-all duration-300 md:px-5',
+          scrolled
+            ? 'border-[var(--border)] bg-[var(--surface)] shadow-[var(--shadow-soft)] backdrop-blur-2xl'
+            : 'border-transparent bg-transparent'
+        )}
+      >
+        <Link
+          href="#home"
+          onClick={(e) => handleSmoothScroll(e, '#home')}
+          className="flex items-center gap-3"
+          aria-label="Kumari Rupam home"
+        >
+          <span className="grid h-10 w-10 place-items-center rounded-xl border border-[var(--border)] bg-[var(--surface-strong)] text-sm font-black text-[var(--text)] shadow-[var(--shadow-soft)]">
+            KR
+          </span>
+          <span className="hidden text-sm font-bold text-[var(--text)] sm:inline">
+            Kumari Rupam
+          </span>
         </Link>
 
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8">
-          <ul className="flex items-center gap-6">
-            {siteData.navItems.map((item, i) => (
-              <motion.li
-                key={item.label}
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }}
-              >
-                <a
-                  href={item.href}
-                  onClick={(e) => handleSmoothScroll(e, item.href)}
-                  className={cn(
-                    'text-sm font-medium transition-colors hover:text-cyan-400 relative py-2',
-                    activeSection === item.href ? 'text-cyan-400' : 'text-zinc-400'
-                  )}
-                >
-                  {item.label}
-                  {activeSection === item.href && (
-                    <motion.div
-                      layoutId="activeNav"
-                      className="absolute -bottom-1 left-0 right-0 h-[2px] bg-cyan-400 rounded-full"
-                    />
-                  )}
-                </a>
-              </motion.li>
-            ))}
-          </ul>
-
-          <motion.button
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
-            className="p-2 rounded-full hover:bg-white/10 transition-colors"
-            aria-label="Toggle theme"
-          >
-            {resolvedTheme === 'light' ? (
-              <Moon className="w-5 h-5 text-zinc-800" />
-            ) : (
-              <Sun className="w-5 h-5 text-zinc-200" />
-            )}
-          </motion.button>
+        <nav className="hidden items-center gap-1 lg:flex">
+          {siteData.navItems.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              onClick={(e) => handleSmoothScroll(e, item.href)}
+              className={cn(
+                'relative rounded-full px-3 py-2 text-sm font-semibold transition-colors',
+                activeSection === item.href
+                  ? 'text-[var(--text)]'
+                  : 'text-[var(--text-muted)] hover:text-[var(--text)]'
+              )}
+            >
+              {activeSection === item.href && (
+                <motion.span
+                  layoutId="active-nav-pill"
+                  className="absolute inset-0 rounded-full bg-[var(--surface-muted)]"
+                  transition={{ type: 'spring', stiffness: 380, damping: 32 }}
+                />
+              )}
+              <span className="relative">{item.label}</span>
+            </a>
+          ))}
         </nav>
 
-        {/* Mobile Nav Toggle */}
-        <div className="md:hidden flex items-center gap-4">
+        <div className="flex items-center gap-2">
           <button
-            onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
-            className="p-2 rounded-full hover:bg-white/10 transition-colors"
+            type="button"
+            onClick={toggleTheme}
+            className="grid h-10 w-10 place-items-center rounded-xl border border-[var(--border)] bg-[var(--surface)] text-[var(--text-muted)] transition hover:text-[var(--text)]"
             aria-label="Toggle theme"
           >
-            {resolvedTheme === 'light' ? (
-              <Moon className="w-5 h-5 text-zinc-800" />
-            ) : (
-              <Sun className="w-5 h-5 text-zinc-200" />
-            )}
+            {isLight ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
           </button>
-          
+
           <button
-            className="p-2 -mr-2 text-zinc-200"
-            onClick={() => setIsOpen(!isOpen)}
+            type="button"
+            onClick={() => setIsOpen((value) => !value)}
+            className="grid h-10 w-10 place-items-center rounded-xl border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] lg:hidden"
             aria-label="Toggle menu"
+            aria-expanded={isOpen}
           >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: '100vh' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden absolute top-full left-0 right-0 bg-[#0a0a0f] border-t border-white/10 flex flex-col px-6 py-8 h-screen"
+          <motion.nav
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2 }}
+            className="mx-auto mt-3 max-w-[1180px] rounded-2xl border border-[var(--border)] bg-[var(--surface-strong)] p-3 shadow-[var(--shadow)] backdrop-blur-2xl lg:hidden"
           >
-            <ul className="flex flex-col gap-6 text-xl">
-              {siteData.navItems.map((item, i) => (
-                <motion.li
-                  key={item.label}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.1 }}
+            <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+              {siteData.navItems.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={(e) => handleSmoothScroll(e, item.href)}
+                  className={cn(
+                    'rounded-xl px-3 py-3 text-sm font-semibold transition',
+                    activeSection === item.href
+                      ? 'bg-[var(--surface-muted)] text-[var(--text)]'
+                      : 'text-[var(--text-muted)] hover:bg-[var(--surface-muted)] hover:text-[var(--text)]'
+                  )}
                 >
-                  <a
-                    href={item.href}
-                    onClick={(e) => handleSmoothScroll(e, item.href)}
-                    className={cn(
-                      'block py-2 font-medium transition-colors',
-                      activeSection === item.href ? 'text-cyan-400' : 'text-zinc-400'
-                    )}
-                  >
-                    {item.label}
-                  </a>
-                </motion.li>
+                  {item.label}
+                </a>
               ))}
-            </ul>
-          </motion.div>
+            </div>
+          </motion.nav>
         )}
       </AnimatePresence>
     </header>

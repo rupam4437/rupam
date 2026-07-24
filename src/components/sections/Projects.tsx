@@ -1,52 +1,44 @@
 'use client';
 
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
+import { ArrowUpRight } from 'lucide-react';
 import { siteData } from '@/lib/constants';
 import FadeIn from '@/components/animations/FadeIn';
 
 const categories = ['All', 'Data Analytics', 'Web Development', 'Cloud'];
 
-const getProjectSpan = (index: number) => {
-  // Bento Grid asymmetric layout spans
-  if (index === 0 || index === 3 || index === 4) {
-    return 'lg:col-span-2 md:col-span-2';
-  }
-  return 'lg:col-span-1 md:col-span-2';
-};
-
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState('All');
-
-  const filteredProjects = activeFilter === 'All' 
-    ? siteData.projects 
-    : siteData.projects.filter(project => project.category === activeFilter);
+  const filteredProjects =
+    activeFilter === 'All'
+      ? siteData.projects
+      : siteData.projects.filter((project) => project.category === activeFilter);
 
   return (
-    <section id="projects" className="section-padding bg-[#0c0c14] border-t border-b border-white/5 relative overflow-hidden">
-      <div className="container mx-auto max-w-[1400px]">
-        <div className="text-center mb-20">
+    <section id="projects" className="section-band alt section-padding">
+      <div className="container">
+        <div className="mb-12 max-w-3xl">
           <FadeIn>
-            <h2 className="awwwards-h2 text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-cyan-400">
-              Featured Projects
-            </h2>
-            <p className="text-[#8b8b9e] max-w-2xl mx-auto mt-6 text-base md:text-lg leading-relaxed">
-              A selection of projects showcasing my expertise in data analytics, web development, and cloud technologies.
+            <p className="eyebrow">Projects</p>
+            <h2 className="section-title mt-4">Selected work across analytics, cloud and web.</h2>
+            <p className="body-large mt-5">
+              A focused set of projects showing dashboards, infrastructure thinking, and full-stack implementation.
             </p>
           </FadeIn>
         </div>
 
-        {/* Filters */}
-        <FadeIn delay={0.2}>
-          <div className="flex flex-wrap justify-center gap-4 mb-20">
+        <FadeIn delay={0.12}>
+          <div className="mb-10 flex flex-wrap gap-2 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-2 backdrop-blur-xl">
             {categories.map((category) => (
               <button
                 key={category}
+                type="button"
                 onClick={() => setActiveFilter(category)}
-                className={`px-6 py-3 rounded-full text-sm font-bold transition-all duration-300 border ${
+                className={`min-h-10 rounded-xl px-4 text-sm font-bold transition ${
                   activeFilter === category
-                    ? 'bg-gradient-to-r from-violet-500 to-cyan-500 text-white border-transparent shadow-[0_0_15px_rgba(124,58,237,0.3)] scale-105'
-                    : 'bg-[#12121a]/60 text-[#8b8b9e] border-white/10 hover:border-violet-500/50 hover:text-[#f5f5f5] backdrop-blur-sm'
+                    ? 'bg-[var(--text)] text-[var(--bg)] shadow-[var(--shadow-soft)]'
+                    : 'text-[var(--text-muted)] hover:bg-[var(--surface-muted)] hover:text-[var(--text)]'
                 }`}
               >
                 {category}
@@ -55,60 +47,44 @@ export default function Projects() {
           </div>
         </FadeIn>
 
-        {/* Bento Grid Projects Layout */}
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 max-w-[1200px] mx-auto">
+        <motion.div layout className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project, idx) => (
-              <motion.div
+            {filteredProjects.map((project, index) => (
+              <motion.article
                 key={project.id}
                 layout
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.4 }}
-                whileHover={{ y: -8 }}
-                className={`${getProjectSpan(idx)} bg-[#12121a]/85 backdrop-blur-md rounded-[28px] p-10 lg:p-12 border border-white/5 hover:border-violet-500/50 hover:shadow-[0_0_40px_-10px_rgba(124,58,237,0.35)] flex flex-col justify-between group transition-all duration-350`}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 16 }}
+                transition={{ duration: 0.26, delay: index * 0.03 }}
+                className={`premium-card flex min-h-[320px] flex-col p-6 md:p-8 ${
+                  index === 0 || index === 3 ? 'lg:col-span-2' : ''
+                }`}
               >
-                <div>
-                  <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
-                    <span className="inline-block px-4 py-1.5 bg-violet-500/10 text-violet-400 rounded-full text-xs font-bold border border-violet-500/15 tracking-wide uppercase">
-                      {project.category}
-                    </span>
-                  </div>
-                  <h3 className="text-2xl lg:text-3xl font-extrabold text-[#f5f5f5] group-hover:text-cyan-400 transition-colors leading-tight mb-5">
-                    {project.title}
-                  </h3>
-                  <p className="text-[#8b8b9e] text-sm lg:text-base leading-relaxed mb-8">
-                    {project.description}
-                  </p>
-                </div>
-                
-                {/* Tech tags and action link aligned at bottom */}
-                <div className="flex items-center justify-between gap-6 pt-6 border-t border-white/5 w-full mt-auto">
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.slice(0, 3).map((tech, i) => (
-                      <span key={i} className="px-2.5 py-1 text-xs bg-white/5 text-[#d1d1d1] rounded border border-white/5 font-semibold">
-                        {tech}
-                      </span>
-                    ))}
-                    {project.technologies.length > 3 && (
-                      <span className="px-2.5 py-1 text-xs bg-white/5 text-[#8b8b9e] rounded border border-white/5 font-semibold">
-                        +{project.technologies.length - 3}
-                      </span>
-                    )}
-                  </div>
-                  
+                <div className="mb-6 flex items-center justify-between gap-4">
+                  <span className="tag">{project.category}</span>
                   <a
                     href={project.githubUrl || siteData.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs font-bold text-violet-400 hover:text-cyan-400 transition-colors uppercase tracking-wider whitespace-nowrap flex items-center gap-1 group/link"
+                    className="grid h-10 w-10 place-items-center rounded-xl border border-[var(--border)] text-[var(--text-muted)] transition hover:border-[var(--border-strong)] hover:text-[var(--text)]"
+                    aria-label={`View ${project.title}`}
                   >
-                    <span>View Project</span>
-                    <span className="transform group-hover/link:translate-x-1 transition-transform">&rarr;</span>
+                    <ArrowUpRight className="h-5 w-5" />
                   </a>
                 </div>
-              </motion.div>
+
+                <h3 className="text-2xl font-black leading-tight text-[var(--text)]">{project.title}</h3>
+                <p className="body-copy mt-5">{project.description}</p>
+
+                <div className="mt-auto flex flex-wrap gap-2 border-t border-[var(--border)] pt-6">
+                  {project.technologies.map((tech) => (
+                    <span key={tech} className="tag">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </motion.article>
             ))}
           </AnimatePresence>
         </motion.div>

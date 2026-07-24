@@ -1,58 +1,38 @@
 'use client';
 
+import { BadgeCheck } from 'lucide-react';
 import { siteData } from '@/lib/constants';
 import FadeIn from '@/components/animations/FadeIn';
 
-function getIssuerStyle(issuer: string) {
-  if (issuer.toLowerCase().includes('microsoft')) {
-    return 'bg-blue-500/10 text-blue-400 border-blue-500/15';
-  }
-  if (issuer.toLowerCase().includes('linkedin')) {
-    return 'bg-cyan-500/10 text-cyan-400 border-cyan-500/15';
-  }
-  return 'bg-violet-500/10 text-violet-400 border-violet-500/15';
-}
-
 export default function Certifications() {
   return (
-    <section id="certifications" className="section-padding bg-[#0a0a0f] relative overflow-hidden">
-      <div className="container mx-auto px-6 max-w-[1400px]">
-        <div className="text-center mb-24">
+    <section id="certifications" className="section-band section-padding">
+      <div className="container">
+        <div className="mb-16 max-w-3xl">
           <FadeIn>
-            <h2 className="awwwards-h2 text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-cyan-400">
-              Certifications
-            </h2>
-            <div className="h-1.5 w-20 mx-auto bg-gradient-to-r from-violet-500 to-cyan-500 rounded-full mt-6" />
+            <p className="eyebrow">Certifications</p>
+            <h2 className="section-title mt-4">Validated cloud, AI and data capability.</h2>
           </FadeIn>
         </div>
 
-        {/* items-start lets each card take its natural height depending on content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 max-w-[1200px] mx-auto items-start">
+        <div className="grid gap-4 md:grid-cols-2">
           {siteData.certifications.map((cert, index) => (
-            <FadeIn key={cert.id} delay={index * 0.1}>
-              <div className="bg-[#12121a]/85 backdrop-blur-md rounded-[24px] p-10 lg:p-12 border border-white/5 hover:border-violet-500/50 hover:shadow-[0_0_30px_-5px_rgba(124,58,237,0.25)] transition-all duration-300 group flex flex-col hover:scale-[1.01]">
-                <div className="flex items-start gap-6">
-                  <div className="text-4xl flex-shrink-0 mt-1">
-                    🏆
+            <FadeIn key={cert.id} delay={index * 0.06}>
+              <article className="premium-card h-full p-6 md:p-8">
+                <div className="flex gap-4">
+                  <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl border border-[var(--border)] bg-[var(--surface-muted)] text-[var(--accent)]">
+                    <BadgeCheck className="h-6 w-6" />
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-xl lg:text-2xl font-bold text-[#f5f5f5] group-hover:text-cyan-400 transition-colors mb-5 leading-snug">
-                      {cert.title}
-                    </h3>
-                    <p className="text-[#8b8b9e] text-sm leading-relaxed mb-6">
-                      {cert.description}
-                    </p>
-                    <div className="flex items-center gap-3.5 flex-wrap">
-                      <span className={`px-4 py-1.5 rounded-full text-xs font-semibold border ${getIssuerStyle(cert.issuer)}`}>
-                        {cert.issuer}
-                      </span>
-                      <span className="text-[#8b8b9e] text-xs font-semibold tracking-wider uppercase">
-                        {cert.date}
-                      </span>
+                  <div>
+                    <div className="mb-4 flex flex-wrap gap-2">
+                      <span className="tag">{cert.issuer}</span>
+                      <span className="tag">{cert.date}</span>
                     </div>
+                    <h3 className="text-xl font-black leading-tight text-[var(--text)]">{cert.title}</h3>
+                    {cert.description && <p className="body-copy mt-4">{cert.description}</p>}
                   </div>
                 </div>
-              </div>
+              </article>
             </FadeIn>
           ))}
         </div>

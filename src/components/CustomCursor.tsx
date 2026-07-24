@@ -93,7 +93,7 @@ export default function CustomCursor() {
         }}
         animate={{
           scale: isHovered ? 1.5 : 1,
-          backgroundColor: isHovered ? 'rgba(124, 58, 237, 0.1)' : 'transparent',
+          backgroundColor: isHovered ? 'rgba(124, 58, 237, 0.1)' : 'rgba(124, 58, 237, 0)',
         }}
         transition={{ duration: 0.15 }}
       />

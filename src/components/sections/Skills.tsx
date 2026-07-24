@@ -6,21 +6,21 @@ import { siteData } from '@/lib/constants';
 import FadeIn from '@/components/animations/FadeIn';
 
 const ProgressBar = ({ name, level }: { name: string; level: number }) => {
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement | null>(null);
   const isInView = useInView(ref, { once: true });
 
   return (
-    <div ref={ref} className="mb-6">
-      <div className="flex justify-between items-center mb-2.5">
-        <span className="text-base font-bold text-[#f5f5f5]">{name}</span>
-        <span className="text-xs font-bold text-cyan-400">{level}%</span>
+    <div ref={ref}>
+      <div className="mb-2 flex items-center justify-between gap-4">
+        <span className="font-bold text-[var(--text)]">{name}</span>
+        <span className="font-mono text-xs font-bold text-[var(--text-soft)]">{level}%</span>
       </div>
-      <div className="h-3 w-full bg-[#0a0a0f] rounded-full overflow-hidden border border-white/5 p-[1px]">
+      <div className="h-2 overflow-hidden rounded-full bg-[var(--surface-muted)]">
         <motion.div
           initial={{ width: 0 }}
           animate={isInView ? { width: `${level}%` } : { width: 0 }}
-          transition={{ duration: 1.2, ease: 'easeOut' }}
-          className="h-full bg-gradient-to-r from-violet-500 to-cyan-500 rounded-full"
+          transition={{ duration: 1, ease: 'easeOut' }}
+          className="h-full rounded-full bg-gradient-to-r from-[var(--accent-2)] via-[var(--accent-3)] to-[var(--accent)]"
         />
       </div>
     </div>
@@ -29,37 +29,31 @@ const ProgressBar = ({ name, level }: { name: string; level: number }) => {
 
 export default function Skills() {
   return (
-    <section id="skills" className="section-padding bg-[#0a0a0f] relative overflow-hidden">
-      <div className="container mx-auto max-w-[1400px]">
-        <div className="text-center mb-24">
-          <FadeIn>
-            <h2 className="awwwards-h2 text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-cyan-400">
-              Skills & Expertise
-            </h2>
-            <div className="h-1.5 w-20 mx-auto bg-gradient-to-r from-violet-500 to-cyan-500 rounded-full mt-6" />
+    <section id="skills" className="section-band section-padding">
+      <div className="container">
+        <div className="mb-16 flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
+          <FadeIn className="max-w-3xl">
+            <p className="eyebrow">Skills</p>
+            <h2 className="section-title mt-4">Tools for analytics, systems and product delivery.</h2>
           </FadeIn>
+          <p className="body-copy max-w-md">
+            Balanced between business reporting, cloud infrastructure, and modern application development.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-[1200px] mx-auto items-stretch">
-          {siteData.skillCategories.map((category, idx) => (
-            <FadeIn key={idx} delay={idx * 0.1}>
-              <motion.div 
-                whileHover={{ y: -5 }}
-                className="bg-[#12121a]/85 backdrop-blur-xl p-10 lg:p-12 rounded-[28px] border border-white/5 shadow-2xl hover:shadow-violet-500/10 hover:border-violet-500/30 transition-all duration-300 relative group overflow-hidden flex flex-col h-full min-h-[350px]"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-violet-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
-                {/* Clean, border-free header text */}
-                <h3 className="text-sm font-bold text-violet-400 tracking-[0.25em] uppercase mb-8">
+        <div className="grid gap-4 md:grid-cols-2">
+          {siteData.skillCategories.map((category, index) => (
+            <FadeIn key={category.title} delay={index * 0.08}>
+              <article className="premium-card h-full p-6 md:p-8">
+                <h3 className="mb-8 text-sm font-black uppercase tracking-[0.14em] text-[var(--accent)]">
                   {category.title}
                 </h3>
-                
-                <div className="space-y-4 flex-grow">
-                  {category.skills.map((skill, i) => (
-                    <ProgressBar key={i} name={skill.name} level={skill.level} />
+                <div className="space-y-6">
+                  {category.skills.map((skill) => (
+                    <ProgressBar key={skill.name} name={skill.name} level={skill.level} />
                   ))}
                 </div>
-              </motion.div>
+              </article>
             </FadeIn>
           ))}
         </div>

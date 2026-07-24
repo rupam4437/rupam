@@ -8,7 +8,7 @@ import FloatingGeometry from './FloatingGeometry';
 
 export default function HeroScene() {
   return (
-    <div className="absolute inset-0 z-0 h-full w-full pointer-events-none">
+    <div className="pointer-events-none absolute inset-0 z-0 hidden h-full w-full md:block">
       <Canvas
         camera={{ position: [0, 0, 6], fov: 60 }}
         gl={{ alpha: true, antialias: true }}
