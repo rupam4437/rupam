@@ -10,9 +10,9 @@ import MagneticButton from '@/components/animations/MagneticButton';
 const HeroScene = dynamic(() => import('@/components/three/HeroScene'), { ssr: false });
 
 const TITLES = [
-  'Software Engineer',
-  'Tech Enthusiast',
-  'Problem Solver'
+  'Data Analytics Professional',
+  'Full Stack Developer',
+  'Cloud Enthusiast'
 ];
 
 export default function Hero() {
@@ -108,7 +108,7 @@ export default function Hero() {
             transition={{ delay: 1.2, duration: 0.8 }}
             className="text-[#8b8b9e] text-lg sm:text-xl max-w-2xl mb-10 leading-relaxed"
           >
-            I specialize in crafting robust automated test suites, ensuring flawless user experiences, and elevating software quality from development to production.
+            I specialize in data visualization, reporting, and trend analysis at Wipro. Passionate about leveraging analytics and technology to drive innovation and strategic growth.
           </motion.p>
 
           <motion.div

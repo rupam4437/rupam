@@ -16,22 +16,27 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Kumari Rupam | Software Engineer',
+  title: 'Kumari Rupam | Data Analytics Professional',
   description:
-    'Portfolio of Kumari Rupam — Passionate software engineer dedicated to excellence, accountability, and delivering high standards.',
+    'Portfolio of Kumari Rupam — Data Analytics professional at Wipro. Specialized in data visualization, Power BI, SQL, and full stack development. Pursuing M.Tech from BITS Pilani.',
   keywords: [
     'Kumari Rupam',
-    'QA Engineer',
+    'Data Analytics',
+    'Power BI',
+    'Wipro',
+    'BITS Pilani',
+    'M.Tech Systems',
     'Software Engineer',
-    'Software Testing',
-    'Developer',
+    'Full Stack Developer',
+    'IIT Patna',
+    'Aryabhatta Knowledge University'
   ],
   authors: [{ name: 'Kumari Rupam' }],
   creator: 'Kumari Rupam',
   openGraph: {
-    title: 'Kumari Rupam | Software Engineer',
+    title: 'Kumari Rupam | Data Analytics Professional',
     description:
-      'Portfolio of Kumari Rupam — Passionate software engineer dedicated to excellence and high standards.',
+      'Portfolio of Kumari Rupam — Data Analytics professional at Wipro. Specialized in data visualization, Power BI, SQL, and full stack development.',
     url: 'https://portfolio-rupam.vercel.app',
     siteName: 'Kumari Rupam Portfolio',
     locale: 'en_US',
@@ -39,9 +44,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Kumari Rupam | Software Engineer',
+    title: 'Kumari Rupam | Data Analytics Professional',
     description:
-      'Portfolio of Kumari Rupam — Software engineer dedicated to excellence.',
+      'Portfolio of Kumari Rupam — Data Analytics professional at Wipro.',
   },
   robots: {
     index: true,

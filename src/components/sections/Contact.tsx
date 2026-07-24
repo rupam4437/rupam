@@ -39,7 +39,7 @@ export default function Contact() {
               Get In Touch
             </h2>
             <p className="text-[#8b8b9e] max-w-2xl mx-auto">
-              Have a project in mind or looking for a QA expert? Let&apos;s talk about how I can help improve your software quality.
+              Have a project in mind or want to connect? I&apos;d love to hear from you.
             </p>
           </FadeIn>
         </div>
@@ -60,8 +60,8 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="text-sm text-[#8b8b9e]">Email</p>
-                    <a href="mailto:your.email@example.com" className="text-[#f5f5f5] hover:text-cyan-400 transition-colors">
-                      your.email@example.com
+                    <a href={`mailto:${siteData.email}`} className="text-[#f5f5f5] hover:text-cyan-400 transition-colors">
+                      {siteData.email}
                     </a>
                   </div>
                 </div>
@@ -72,7 +72,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="text-sm text-[#8b8b9e]">Phone</p>
-                    <p className="text-[#f5f5f5]">+1 (555) 123-4567</p>
+                    <p className="text-[#f5f5f5]">{siteData.phone}</p>
                   </div>
                 </div>
 
@@ -82,7 +82,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="text-sm text-[#8b8b9e]">Location</p>
-                    <p className="text-[#f5f5f5]">San Francisco, CA</p>
+                    <p className="text-[#f5f5f5]">{siteData.location}</p>
                   </div>
                 </div>
               </div>

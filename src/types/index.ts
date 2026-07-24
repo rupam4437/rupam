@@ -42,6 +42,25 @@ export interface Achievement {
   icon?: string;
 }
 
+export interface Education {
+  id: number;
+  institution: string;
+  degree: string;
+  field: string;
+  duration: string;
+  grade?: string;
+  description?: string;
+  skills?: string[];
+}
+
+export interface Certification {
+  id: number;
+  title: string;
+  issuer: string;
+  date: string;
+  description?: string;
+}
+
 export interface SocialLink {
   name: string;
   url: string;
@@ -61,6 +80,8 @@ export interface SiteData {
   experiences: Experience[];
   projects: Project[];
   skillCategories: SkillCategory[];
+  education: Education[];
+  certifications: Certification[];
   achievements: Achievement[];
   socialLinks: SocialLink[];
 }

@@ -10,11 +10,13 @@ const Counter = ({ value }: { value: string }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-50px' });
   const [count, setCount] = useState(0);
-  const numericValue = parseInt(value.replace(/[^0-9]/g, ''), 10);
-  const suffix = value.replace(/[0-9]/g, '');
+  
+  const hasNumber = /[0-9]/.test(value);
+  const numericValue = hasNumber ? parseInt(value.replace(/[^0-9]/g, ''), 10) : NaN;
+  const suffix = hasNumber ? value.replace(/[0-9]/g, '') : value;
 
   useEffect(() => {
-    if (isInView) {
+    if (isInView && !isNaN(numericValue)) {
       const duration = 2000;
       const startTime = performance.now();
       
@@ -33,7 +35,7 @@ const Counter = ({ value }: { value: string }) => {
 
   return (
     <div ref={ref} className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-cyan-400">
-      {count}{suffix}
+      {!isNaN(numericValue) ? `${count}${suffix}` : value}
     </div>
   );
 };

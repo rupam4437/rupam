@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { siteData } from '@/lib/constants';
 import FadeIn from '@/components/animations/FadeIn';
 
-const categories = ['All', 'Automation', 'API Testing', 'Performance', 'Mobile Testing', 'DevOps', 'Accessibility'];
+const categories = ['All', 'Data Analytics', 'Web Development', 'Cloud'];
 
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState('All');
@@ -23,7 +23,7 @@ export default function Projects() {
               Featured Projects
             </h2>
             <p className="text-[#8b8b9e] max-w-2xl mx-auto">
-              A selection of testing frameworks, automation pipelines, and quality engineering initiatives I&apos;ve built.
+              A selection of projects showcasing my expertise in data analytics, web development, and cloud technologies.
             </p>
           </FadeIn>
         </div>
