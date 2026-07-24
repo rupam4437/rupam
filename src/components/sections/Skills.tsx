@@ -29,7 +29,7 @@ const ProgressBar = ({ name, level }: { name: string; level: number }) => {
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-24 bg-background relative">
+    <section id="skills" className="py-28 bg-[#0a0a0f] relative">
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="text-center mb-16">
           <FadeIn>

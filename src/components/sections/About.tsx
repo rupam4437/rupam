@@ -42,7 +42,7 @@ const Counter = ({ value }: { value: string }) => {
 
 export default function About() {
   return (
-    <section id="about" className="py-24 relative overflow-hidden bg-background">
+    <section id="about" className="py-28 relative overflow-hidden bg-[#0c0c14] border-t border-b border-white/5">
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="flex flex-col md:flex-row gap-12 items-center">
           {/* Left: Photo Placeholder */}

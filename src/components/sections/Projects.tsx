@@ -15,7 +15,7 @@ export default function Projects() {
     : siteData.projects.filter(project => project.category === activeFilter);
 
   return (
-    <section id="projects" className="py-24 bg-background">
+    <section id="projects" className="py-28 bg-[#0c0c14] border-t border-b border-white/5">
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="text-center mb-12">
           <FadeIn>

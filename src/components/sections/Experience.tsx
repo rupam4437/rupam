@@ -5,7 +5,7 @@ import FadeIn from '@/components/animations/FadeIn';
 
 export default function Experience() {
   return (
-    <section id="experience" className="py-24 bg-background relative overflow-hidden">
+    <section id="experience" className="py-28 bg-[#0a0a0f] relative overflow-hidden">
       <div className="container mx-auto px-4 max-w-4xl">
         <div className="text-center mb-16">
           <FadeIn>

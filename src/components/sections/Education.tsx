@@ -5,7 +5,7 @@ import FadeIn from '@/components/animations/FadeIn';
 
 export default function Education() {
   return (
-    <section id="education" className="py-24 bg-background">
+    <section id="education" className="py-28 bg-[#0c0c14] border-t border-b border-white/5">
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="text-center mb-16">
           <FadeIn>

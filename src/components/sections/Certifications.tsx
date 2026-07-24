@@ -15,7 +15,7 @@ function getIssuerStyle(issuer: string) {
 
 export default function Certifications() {
   return (
-    <section id="certifications" className="py-24 bg-background">
+    <section id="certifications" className="py-28 bg-[#0a0a0f]">
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="text-center mb-16">
           <FadeIn>
