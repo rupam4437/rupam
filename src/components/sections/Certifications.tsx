@@ -26,10 +26,11 @@ export default function Certifications() {
           </FadeIn>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 max-w-[1200px] mx-auto">
+        {/* items-start lets each card take its natural height depending on content */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 max-w-[1200px] mx-auto items-start">
           {siteData.certifications.map((cert, index) => (
             <FadeIn key={cert.id} delay={index * 0.1}>
-              <div className="bg-[#12121a]/85 backdrop-blur-md rounded-[24px] p-10 lg:p-12 border border-white/5 hover:border-violet-500/50 hover:shadow-[0_0_30px_-5px_rgba(124,58,237,0.25)] transition-all duration-300 group h-full flex flex-col justify-between hover:scale-[1.01]">
+              <div className="bg-[#12121a]/85 backdrop-blur-md rounded-[24px] p-10 lg:p-12 border border-white/5 hover:border-violet-500/50 hover:shadow-[0_0_30px_-5px_rgba(124,58,237,0.25)] transition-all duration-300 group flex flex-col hover:scale-[1.01]">
                 <div className="flex items-start gap-6">
                   <div className="text-4xl flex-shrink-0 mt-1">
                     🏆
@@ -38,6 +39,9 @@ export default function Certifications() {
                     <h3 className="text-xl lg:text-2xl font-bold text-[#f5f5f5] group-hover:text-cyan-400 transition-colors mb-5 leading-snug">
                       {cert.title}
                     </h3>
+                    <p className="text-[#8b8b9e] text-sm leading-relaxed mb-6">
+                      {cert.description}
+                    </p>
                     <div className="flex items-center gap-3.5 flex-wrap">
                       <span className={`px-4 py-1.5 rounded-full text-xs font-semibold border ${getIssuerStyle(cert.issuer)}`}>
                         {cert.issuer}

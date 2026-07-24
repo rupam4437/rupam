@@ -34,10 +34,40 @@ const Counter = ({ value }: { value: string }) => {
   }, [isInView, numericValue]);
 
   return (
-    <div ref={ref} className="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-cyan-400">
+    <div ref={ref} className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-cyan-400 tracking-tight">
       {!isNaN(numericValue) ? `${count}${suffix}` : value}
     </div>
   );
+};
+
+const getBentoDetails = (label: string) => {
+  switch (label.toLowerCase()) {
+    case 'certifications':
+      return {
+        span: 'col-span-2 md:col-span-2 lg:col-span-2',
+        desc: 'Industry certifications validating cloud, AI, and security engineering expertise.'
+      };
+    case 'projects done':
+      return {
+        span: 'col-span-2 md:col-span-2 lg:col-span-1',
+        desc: 'Successful deployments.'
+      };
+    case 'm.tech student':
+      return {
+        span: 'col-span-2 md:col-span-2 lg:col-span-2',
+        desc: 'BITS Pilani program in Computing Systems & Infrastructure.'
+      };
+    case 'wipro role':
+      return {
+        span: 'col-span-2 md:col-span-2 lg:col-span-3',
+        desc: 'Driving analytics, dashboard automation, and data visualization at Wipro.'
+      };
+    default:
+      return {
+        span: 'col-span-2 md:col-span-2 lg:col-span-2',
+        desc: 'Professional career highlight.'
+      };
+  }
 };
 
 export default function About() {
@@ -71,7 +101,7 @@ export default function About() {
               </TextReveal>
             </div>
             
-            <div className="awwwards-body awwwards-max-w-text space-y-6 mb-12">
+            <div className="awwwards-body awwwards-max-w-text space-y-6 mb-12 text-lg leading-[1.8] text-zinc-400">
               {aboutText.paragraphs.map((paragraph, index) => (
                 <FadeIn key={index} delay={index * 0.1}>
                   <p className="leading-relaxed">{paragraph}</p>
@@ -79,18 +109,34 @@ export default function About() {
               ))}
             </div>
             
-            {/* Stats Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 w-full mt-4">
-              {aboutText.stats.map((stat, index) => (
-                <FadeIn key={index} delay={0.4 + index * 0.1} className="flex flex-col justify-between bg-[#12121a]/85 p-8 rounded-2xl border border-white/5 hover:border-violet-500/30 transition-all duration-300 backdrop-blur-md shadow-lg min-h-[130px] group hover:scale-[1.02]">
-                  <Counter value={stat.value} />
-                  <span className="text-xs md:text-sm text-[#8b8b9e] font-semibold tracking-wide mt-3 uppercase group-hover:text-cyan-400 transition-colors">{stat.label}</span>
-                </FadeIn>
-              ))}
+            {/* Bento Grid Stats */}
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-6 w-full mt-4">
+              {aboutText.stats.map((stat, index) => {
+                const bento = getBentoDetails(stat.label);
+                return (
+                  <FadeIn 
+                    key={index} 
+                    delay={0.4 + index * 0.1} 
+                    className={`${bento.span} flex flex-col justify-between bg-[#12121a]/60 backdrop-blur-xl p-8 lg:p-10 rounded-[28px] border border-white/5 shadow-2xl hover:border-violet-500/30 transition-all duration-300 hover:scale-[1.02] group`}
+                  >
+                    <div>
+                      <Counter value={stat.value} />
+                      <h4 className="text-sm font-bold text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-cyan-400 tracking-wider uppercase mt-4 mb-2">
+                        {stat.label}
+                      </h4>
+                    </div>
+                    <p className="text-xs text-[#8b8b9e] leading-relaxed mt-1">
+                      {bento.desc}
+                    </p>
+                  </FadeIn>
+                );
+              })}
             </div>
           </div>
         </div>
       </div>
+      {/* Spacious bottom padding spacer */}
+      <div className="h-16 md:h-24" />
     </section>
   );
 }

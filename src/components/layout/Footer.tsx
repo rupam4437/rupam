@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { Mail, ArrowUp } from 'lucide-react';
 import { LinkedinIcon, GithubIcon } from '@/components/ui/SocialIcons';
+import { siteData } from '@/lib/constants';
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -15,9 +16,9 @@ export default function Footer() {
   };
 
   const socialLinks = [
-    { name: 'GitHub', icon: GithubIcon, href: 'https://github.com' },
-    { name: 'LinkedIn', icon: LinkedinIcon, href: 'https://linkedin.com' },
-    { name: 'Email', icon: Mail, href: 'mailto:contact@example.com' },
+    { name: 'GitHub', icon: GithubIcon, href: siteData.github },
+    { name: 'LinkedIn', icon: LinkedinIcon, href: siteData.linkedin },
+    { name: 'Email', icon: Mail, href: `mailto:${siteData.email}` },
   ];
 
   return (
