@@ -5,7 +5,7 @@ export const siteData: SiteData = {
   title: 'Data Analytics Professional',
   description:
     'Data Analytics professional at Wipro, dedicated to excellence, accountability, and leveraging analytics to drive innovation and strategic growth.',
-  email: 'rupam4437@users.noreply.github.com',
+  email: 'rupam4437@gmail.com',
   phone: '+91 XXXXXXXXXX',
   location: 'Bengaluru, Karnataka, India',
   linkedin: 'https://www.linkedin.com/in/kumari-rupam-4621a024b/',
@@ -229,7 +229,7 @@ export const siteData: SiteData = {
       icon: 'linkedin',
     },
     { name: 'GitHub', url: 'https://github.com/rupam4437', icon: 'github' },
-    { name: 'Email', url: 'mailto:rupam4437@users.noreply.github.com', icon: 'mail' },
+    { name: 'Email', url: 'mailto:rupam4437@gmail.com', icon: 'mail' },
   ],
 };
 

@@ -1,11 +1,19 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { ThemeProvider } from '@/components/layout/ThemeProvider';
 
+const siteUrl = 'https://portfolio-rupam.vercel.app';
+const siteTitle = 'Kumari Rupam | Data Analytics Professional';
+const siteDescription =
+  'Portfolio of Kumari Rupam, a Data Analytics professional at Wipro specializing in Power BI, SQL, Azure, reporting, data visualization, and full stack development.';
+
 export const metadata: Metadata = {
-  title: 'Kumari Rupam | Data Analytics Professional',
-  description:
-    'Portfolio of Kumari Rupam — Data Analytics professional at Wipro. Specialized in data visualization, Power BI, SQL, and full stack development. Pursuing M.Tech from BITS Pilani.',
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: siteTitle,
+    template: '%s | Kumari Rupam',
+  },
+  description: siteDescription,
   keywords: [
     'Kumari Rupam',
     'Data Analytics',
@@ -18,26 +26,103 @@ export const metadata: Metadata = {
     'IIT Patna',
     'Aryabhatta Knowledge University'
   ],
+  alternates: {
+    canonical: '/',
+  },
   authors: [{ name: 'Kumari Rupam' }],
   creator: 'Kumari Rupam',
+  publisher: 'Kumari Rupam',
+  category: 'portfolio',
+  applicationName: 'Kumari Rupam Portfolio',
   openGraph: {
-    title: 'Kumari Rupam | Data Analytics Professional',
-    description:
-      'Portfolio of Kumari Rupam — Data Analytics professional at Wipro. Specialized in data visualization, Power BI, SQL, and full stack development.',
-    url: 'https://portfolio-rupam.vercel.app',
+    title: siteTitle,
+    description: siteDescription,
+    url: siteUrl,
     siteName: 'Kumari Rupam Portfolio',
     locale: 'en_US',
     type: 'website',
+    images: [
+      {
+        url: '/images/rupam-profile.jpg',
+        width: 1200,
+        height: 1200,
+        alt: 'Kumari Rupam, Data Analytics Professional',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Kumari Rupam | Data Analytics Professional',
-    description:
-      'Portfolio of Kumari Rupam — Data Analytics professional at Wipro.',
+    title: siteTitle,
+    description: siteDescription,
+    images: ['/images/rupam-profile.jpg'],
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      'max-video-preview': -1,
+    },
+  },
+  icons: {
+    icon: '/favicon.ico',
+    apple: '/images/rupam-profile-2.png',
+  },
+  manifest: '/manifest.webmanifest',
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#08090d' },
+  ],
+  colorScheme: 'dark light',
+};
+
+const personJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Kumari Rupam',
+  url: siteUrl,
+  image: `${siteUrl}/images/rupam-profile.jpg`,
+  jobTitle: 'Data Analytics Professional',
+  worksFor: {
+    '@type': 'Organization',
+    name: 'Wipro',
+  },
+  alumniOf: [
+    {
+      '@type': 'CollegeOrUniversity',
+      name: 'Birla Institute of Technology and Science, Pilani',
+    },
+    {
+      '@type': 'CollegeOrUniversity',
+      name: 'Aryabhatta Knowledge University, Patna',
+    },
+    {
+      '@type': 'CollegeOrUniversity',
+      name: 'Indian Institute of Technology, Patna',
+    },
+  ],
+  sameAs: [
+    'https://www.linkedin.com/in/kumari-rupam-4621a024b/',
+    'https://github.com/rupam4437',
+  ],
+  knowsAbout: ['Power BI', 'SQL', 'Data Visualization', 'Microsoft Azure', 'Full Stack Development'],
+};
+
+const websiteJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Kumari Rupam Portfolio',
+  url: siteUrl,
+  description: siteDescription,
+  publisher: {
+    '@type': 'Person',
+    name: 'Kumari Rupam',
   },
 };
 
@@ -49,8 +134,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/favicon.ico" />
-        <meta name="theme-color" content="#0a0a0f" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([personJsonLd, websiteJsonLd]),
+          }}
+        />
       </head>
       <body className="font-sans antialiased">
         <ThemeProvider
