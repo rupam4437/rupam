@@ -90,7 +90,7 @@ export default function Hero() {
               <MagneticButton>
                 <button
                   onClick={() => handleScroll('projects')}
-                  className="px-6 py-3.5 bg-gradient-to-r from-violet-600 to-cyan-600 hover:from-violet-500 hover:to-cyan-500 text-white rounded-full font-medium transition-all hover:shadow-[0_0_20px_rgba(124,58,237,0.4)] active:scale-95 cursor-pointer text-sm w-full sm:w-auto"
+                  className="px-8 py-4 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white rounded-full font-bold transition-all hover:shadow-[0_0_20px_rgba(124,58,237,0.4)] active:scale-95 cursor-pointer text-sm w-full sm:w-auto shadow-md"
                 >
                   View My Work
                 </button>
@@ -99,7 +99,7 @@ export default function Hero() {
               <MagneticButton>
                 <button
                   onClick={() => handleScroll('contact')}
-                  className="px-6 py-3.5 bg-transparent border border-white/20 hover:border-white/50 hover:bg-white/5 text-white rounded-full font-medium transition-colors cursor-pointer text-sm w-full sm:w-auto"
+                  className="px-8 py-4 bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-500 hover:to-teal-500 text-white rounded-full font-bold transition-all hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] active:scale-95 cursor-pointer text-sm w-full sm:w-auto shadow-md"
                 >
                   Get In Touch
                 </button>

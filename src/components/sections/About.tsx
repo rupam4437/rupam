@@ -34,7 +34,7 @@ const Counter = ({ value }: { value: string }) => {
   }, [isInView, numericValue]);
 
   return (
-    <div ref={ref} className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-cyan-400">
+    <div ref={ref} className="text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-cyan-400">
       {!isNaN(numericValue) ? `${count}${suffix}` : value}
     </div>
   );
@@ -42,15 +42,15 @@ const Counter = ({ value }: { value: string }) => {
 
 export default function About() {
   return (
-    <section id="about" className="py-28 relative overflow-hidden bg-[#0c0c14] border-t border-b border-white/5">
-      <div className="container mx-auto px-4 max-w-6xl">
-        <div className="flex flex-col md:flex-row gap-12 items-center">
-          {/* Left: Photo Placeholder */}
-          <div className="w-full md:w-5/12">
+    <section id="about" className="py-36 relative overflow-hidden bg-[#0c0c14] border-t border-b border-white/5">
+      <div className="container mx-auto px-6 max-w-6xl">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+          {/* Left: Photo Frame */}
+          <div className="w-full lg:col-span-5">
             <FadeIn>
-              <div className="relative aspect-[4/5] rounded-2xl p-1 bg-gradient-to-b from-violet-500 to-cyan-500">
-                <div className="absolute inset-[1px] bg-[#0a0a0f] rounded-2xl backdrop-blur-xl" />
-                <div className="relative h-full w-full rounded-xl overflow-hidden">
+              <div className="relative aspect-[4/5] rounded-3xl p-1 bg-gradient-to-b from-violet-500 to-cyan-500 shadow-2xl">
+                <div className="absolute inset-[1px] bg-[#0a0a0f] rounded-3xl backdrop-blur-xl" />
+                <div className="relative h-full w-full rounded-2xl overflow-hidden">
                   <img
                     src="/images/rupam-profile.jpg"
                     alt="Kumari Rupam"
@@ -62,16 +62,16 @@ export default function About() {
           </div>
           
           {/* Right: Bio */}
-          <div className="w-full md:w-7/12">
-            <div className="mb-6">
+          <div className="w-full lg:col-span-7">
+            <div className="mb-8">
               <TextReveal>
-                <h2 className="text-3xl md:text-5xl font-bold text-[#f5f5f5]">
+                <h2 className="text-3xl md:text-5xl font-bold text-[#f5f5f5] leading-tight">
                   {aboutText.headline}
                 </h2>
               </TextReveal>
             </div>
             
-            <div className="space-y-4 text-[#8b8b9e] mb-10 text-lg">
+            <div className="space-y-6 text-[#8b8b9e] mb-12 text-base md:text-lg leading-relaxed">
               {aboutText.paragraphs.map((paragraph, index) => (
                 <FadeIn key={index} delay={index * 0.1}>
                   <p>{paragraph}</p>
@@ -80,11 +80,11 @@ export default function About() {
             </div>
             
             {/* Stats Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
               {aboutText.stats.map((stat, index) => (
-                <FadeIn key={index} delay={0.4 + index * 0.1} className="flex flex-col bg-[#12121a]/50 p-4 rounded-xl border border-white/5 backdrop-blur-sm">
+                <FadeIn key={index} delay={0.4 + index * 0.1} className="flex flex-col justify-between bg-[#12121a]/85 p-6 rounded-2xl border border-white/5 hover:border-violet-500/30 transition-all duration-300 backdrop-blur-md shadow-md min-h-[110px]">
                   <Counter value={stat.value} />
-                  <span className="text-sm text-[#8b8b9e] mt-1">{stat.label}</span>
+                  <span className="text-xs md:text-sm text-[#8b8b9e] font-medium tracking-wide mt-2">{stat.label}</span>
                 </FadeIn>
               ))}
             </div>
