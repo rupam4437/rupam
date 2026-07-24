@@ -4,7 +4,7 @@ export const siteData: SiteData = {
   name: 'Kumari Rupam',
   title: 'Software Engineer',
   description:
-    'Passionate software professional dedicated to excellence, accountability, and delivering high standards. Award-winning engineer committed to quality and continuous improvement.',
+    'Passionate software professional at Wipro, dedicated to excellence, accountability, and delivering high standards.',
   email: 'your.email@example.com',
   phone: '+91 XXXXXXXXXX',
   location: 'India',
@@ -16,19 +16,18 @@ export const siteData: SiteData = {
     { label: 'Experience', href: '#experience' },
     { label: 'Skills', href: '#skills' },
     { label: 'Projects', href: '#projects' },
-    { label: 'Achievements', href: '#achievements' },
     { label: 'Contact', href: '#contact' },
   ],
   experiences: [
     {
       id: 1,
       role: 'Software Engineer',
-      company: 'Update with your company name',
-      duration: 'Update with your duration',
+      company: 'Wipro',
+      duration: 'Present',
       description: [
-        'Update this with your actual role description from LinkedIn',
-        'Add your key responsibilities and accomplishments',
-        'Mention technologies and tools you work with',
+        'Working at Wipro contributing to enterprise software solutions',
+        'Collaborating with cross-functional teams to deliver quality products',
+        'Continuously learning and applying new technologies',
       ],
       technologies: ['Update', 'With', 'Your', 'Tech', 'Stack'],
     },
@@ -38,7 +37,7 @@ export const siteData: SiteData = {
       id: 1,
       title: 'Project 1',
       description:
-        'Update with your actual project description from LinkedIn. Describe the problem you solved and the impact you made.',
+        'Update with your actual project description. Describe the problem you solved and the impact you made.',
       technologies: ['Update', 'With', 'Your', 'Technologies'],
       category: 'Development',
     },
@@ -46,7 +45,7 @@ export const siteData: SiteData = {
       id: 2,
       title: 'Project 2',
       description:
-        'Update with your actual project description from LinkedIn. Describe the problem you solved and the impact you made.',
+        'Update with your actual project description. Describe the problem you solved and the impact you made.',
       technologies: ['Update', 'With', 'Your', 'Technologies'],
       category: 'Development',
     },
@@ -54,7 +53,7 @@ export const siteData: SiteData = {
       id: 3,
       title: 'Project 3',
       description:
-        'Update with your actual project description from LinkedIn. Describe the problem you solved and the impact you made.',
+        'Update with your actual project description. Describe the problem you solved and the impact you made.',
       technologies: ['Update', 'With', 'Your', 'Technologies'],
       category: 'Development',
     },
@@ -86,15 +85,7 @@ export const siteData: SiteData = {
       ],
     },
   ],
-  achievements: [
-    {
-      id: 1,
-      title: 'Best QA Award',
-      description:
-        'Recognized for consistently demonstrating excellence through dedication, accountability, and commitment to delivering high standards. Nominated by Divya G for positively influencing team success and service quality.',
-      year: '2024',
-    },
-  ],
+  achievements: [],
   socialLinks: [
     {
       name: 'LinkedIn',
@@ -109,21 +100,20 @@ export const siteData: SiteData = {
 export const aboutText = {
   headline: 'Building Excellence, One Line at a Time',
   paragraphs: [
-    "I'm Kumari Rupam, a passionate software professional dedicated to delivering excellence in every project I undertake. My commitment to high standards and accountability drives me to continuously improve and push boundaries.",
+    "I'm Kumari Rupam, a passionate software professional currently working at Wipro. My commitment to high standards and accountability drives me to continuously improve and push boundaries.",
     'With a strong foundation in technology and a detail-oriented mindset, I thrive in collaborative environments where quality and innovation go hand in hand.',
-    'Recognized with the Best QA Award for my dedication and valuable contributions to team success, I believe in making a positive impact through dependable performance and continuous learning.',
+    'I believe in making a positive impact through dependable performance, continuous learning, and contributing meaningfully to every project I take on.',
   ],
   stats: [
-    { label: 'Projects Delivered', value: '20+' },
+    { label: 'Company', value: 'Wipro' },
+    { label: 'Projects', value: '10+' },
     { label: 'Technologies', value: '15+' },
-    { label: 'Awards', value: '1' },
     { label: 'Years Learning', value: '3+' },
   ],
 };
 
 export const testimonial = {
-  quote:
-    'Rupam consistently demonstrates excellence in quality assurance through her dedication, accountability, and commitment to delivering high standards. Her dependable performance and valuable contributions have positively influenced team success and service quality, making her a deserving recipient of the Best QA award.',
-  author: 'Divya G',
-  role: 'Nominator',
+  quote: '',
+  author: '',
+  role: '',
 };

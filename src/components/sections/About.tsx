@@ -48,10 +48,12 @@ export default function About() {
             <FadeIn>
               <div className="relative aspect-[4/5] rounded-2xl p-1 bg-gradient-to-b from-violet-500 to-cyan-500">
                 <div className="absolute inset-[1px] bg-[#0a0a0f] rounded-2xl backdrop-blur-xl" />
-                <div className="relative h-full w-full rounded-xl bg-[#12121a]/80 border border-white/5 flex items-center justify-center">
-                  <span className="text-[#8b8b9e] font-medium tracking-wider uppercase text-sm">
-                    Photo Coming Soon
-                  </span>
+                <div className="relative h-full w-full rounded-xl overflow-hidden">
+                  <img
+                    src="/images/rupam-profile.jpg"
+                    alt="Kumari Rupam"
+                    className="w-full h-full object-cover object-top"
+                  />
                 </div>
               </div>
             </FadeIn>

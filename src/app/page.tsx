@@ -12,7 +12,7 @@ const About = dynamic(() => import('@/components/sections/About'), { ssr: false 
 const Experience = dynamic(() => import('@/components/sections/Experience'), { ssr: false });
 const Skills = dynamic(() => import('@/components/sections/Skills'), { ssr: false });
 const Projects = dynamic(() => import('@/components/sections/Projects'), { ssr: false });
-const Achievements = dynamic(() => import('@/components/sections/Achievements'), { ssr: false });
+
 const Contact = dynamic(() => import('@/components/sections/Contact'), { ssr: false });
 const Footer = dynamic(() => import('@/components/layout/Footer'), { ssr: false });
 
@@ -113,7 +113,7 @@ export default function Home() {
               <Experience />
               <Skills />
               <Projects />
-              <Achievements />
+
               <Contact />
             </main>
             <Footer />
