@@ -10,9 +10,9 @@ import MagneticButton from '@/components/animations/MagneticButton';
 const HeroScene = dynamic(() => import('@/components/three/HeroScene'), { ssr: false });
 
 const TITLES = [
-  'Quality Assurance Engineer',
-  'Test Automation Expert',
-  'Software Quality Advocate'
+  'Software Engineer',
+  'Tech Enthusiast',
+  'Problem Solver'
 ];
 
 export default function Hero() {

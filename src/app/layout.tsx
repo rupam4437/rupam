@@ -16,24 +16,22 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Kumari Rupam | Quality Assurance Engineer',
+  title: 'Kumari Rupam | Software Engineer',
   description:
-    'Portfolio of Kumari Rupam — Award-winning Quality Assurance Engineer specializing in test automation, API testing, and software quality. Dedicated to delivering excellence through accountability and high standards.',
+    'Portfolio of Kumari Rupam — Passionate software engineer dedicated to excellence, accountability, and delivering high standards.',
   keywords: [
     'Kumari Rupam',
     'QA Engineer',
-    'Quality Assurance',
-    'Test Automation',
+    'Software Engineer',
     'Software Testing',
-    'Selenium',
-    'Portfolio',
+    'Developer',
   ],
   authors: [{ name: 'Kumari Rupam' }],
   creator: 'Kumari Rupam',
   openGraph: {
-    title: 'Kumari Rupam | Quality Assurance Engineer',
+    title: 'Kumari Rupam | Software Engineer',
     description:
-      'Award-winning QA Engineer portfolio — Specializing in test automation, API testing, and software quality excellence.',
+      'Portfolio of Kumari Rupam — Passionate software engineer dedicated to excellence and high standards.',
     url: 'https://portfolio-rupam.vercel.app',
     siteName: 'Kumari Rupam Portfolio',
     locale: 'en_US',
@@ -41,9 +39,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Kumari Rupam | Quality Assurance Engineer',
+    title: 'Kumari Rupam | Software Engineer',
     description:
-      'Award-winning QA Engineer portfolio — Test automation, API testing, and quality excellence.',
+      'Portfolio of Kumari Rupam — Software engineer dedicated to excellence.',
   },
   robots: {
     index: true,
